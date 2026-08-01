@@ -7,6 +7,38 @@ ob_start(); // buffer output so header() calls work anywhere in the page
 
 require("dbconnect.php");
 
+// ── Early HTTP Basic Auth check ───────────────────────────────────────────────
+// Must run before any output so the browser receives a clean 401 and shows
+// its native login dialog.
+$PHP_AUTH_USER = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
+$PHP_AUTH_PW   = isset($_SERVER['PHP_AUTH_PW'])   ? $_SERVER['PHP_AUTH_PW']   : '';
+
+if (strlen($PHP_AUTH_USER) < 2 || strlen($PHP_AUTH_PW) < 2) {
+    ob_end_clean();
+    header('WWW-Authenticate: Basic realm="VICI-PROJECTS"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'Authentication required.';
+    exit;
+}
+
+// Validate credentials against DB before spending time rendering the page.
+$_auth_user = mysqli_real_escape_string($link, $PHP_AUTH_USER);
+$_auth_pw   = mysqli_real_escape_string($link, $PHP_AUTH_PW);
+$_auth_rslt = mysqli_query($link,
+    "SELECT count(*) FROM vicidial_users
+     WHERE user='$_auth_user' AND pass='$_auth_pw'
+       AND user_level > 6 AND active='Y'"
+);
+$_auth_row  = mysqli_fetch_row($_auth_rslt);
+if ((int)$_auth_row[0] < 1) {
+    ob_end_clean();
+    header('WWW-Authenticate: Basic realm="VICI-PROJECTS"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'Invalid Username/Password.';
+    exit;
+}
+// ── End early auth check ──────────────────────────────────────────────────────
+
 ######################################################################################################
 ######################################################################################################
 #######   static variable settings for display options
@@ -90,6 +122,8 @@ $reports_color =	'#E6E6E6';
 $subcamp_color =	'#C6C6C6';
 ###
 
+
+$DB = 0; // debug flag — set to 1 to echo SQL queries
 
 $PHP_AUTH_USER=$_SERVER['PHP_AUTH_USER'];
 $PHP_AUTH_PW=$_SERVER['PHP_AUTH_PW'];
