@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 # 
 # dbconnect.php    version 2.4
 #
@@ -53,12 +54,11 @@ else
 
 if ( ($use_slave_server > 0) and (strlen($slave_db_server)>5) )
 	{$VARDB_server = $slave_db_server;}
-$link=mysql_connect("$VARDB_server:$VARDB_port", "$VARDB_user", "$VARDB_pass");
+$link=mysqli_connect($VARDB_server, $VARDB_user, $VARDB_pass, $VARDB_database, (int)$VARDB_port);
 if (!$link) 
 	{
-    die('MySQL connect ERROR: ' . mysql_error());
+    die('MySQL connect ERROR: ' . mysqli_connect_error());
 	}
-mysql_select_db("$VARDB_database");
 
 $local_DEF = 'Local/';
 $conf_silent_prefix = '7';
