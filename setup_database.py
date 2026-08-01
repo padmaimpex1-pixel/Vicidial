@@ -59,10 +59,14 @@ def run(cmd, *, check=True, capture=False, input_text=None, timeout=120):
     except subprocess.TimeoutExpired:
         raise RuntimeError(f"Command timed out ({timeout}s): {cmd}")
     if check and result.returncode != 0:
-        raise RuntimeError(
-            f"Command failed (exit {result.returncode}):\n{cmd}\n"
-            + (result.stderr or result.stdout or "")
-        )
+        # MySQL CLI exits 1 on warnings too; treat it as failure only when
+        # stderr contains an actual ERROR line (not just a Warning).
+        combined = (result.stderr or "") + (result.stdout or "")
+        if result.returncode != 1 or re.search(r'\bERROR\b', combined):
+            raise RuntimeError(
+                f"Command failed (exit {result.returncode}):\n{cmd}\n"
+                + combined
+            )
     return result
 
 def run_sql(mysql_bin, user, password, host, port, sql, database=""):
@@ -76,14 +80,53 @@ def run_sql(mysql_bin, user, password, host, port, sql, database=""):
     return run(cmd, capture=True)
 
 def run_sql_file(mysql_bin, user, password, host, port, sql_file, database=""):
-    """Execute a SQL file via mysql CLI."""
+    """Execute a SQL file via mysql CLI.
+
+    Preprocesses the file to backtick-quote MySQL 8 reserved words used as
+    column/index names (rank, groups, etc.) then imports with --force so that
+    minor compatibility warnings don't abort the whole import.
+    """
+    # Reserved words that appear as bare identifiers in the legacy schema
+    RESERVED = {"rank", "groups", "rows", "system", "interval", "function",
+                "values", "leading", "condition", "release", "status"}
+
+    with open(sql_file, "r", encoding="utf-8", errors="ignore") as f:
+        sql_content = f.read()
+
+    # Wrap bare reserved words that appear as column/index names.
+    # Matches:  word<whitespace>  at start of a definition line, OR
+    #           index (word)  patterns — only when not already backtick-quoted.
+    def quote_reserved(text):
+        for word in RESERVED:
+            # column definition: "  rank SMALLINT" -> "  `rank` SMALLINT"
+            text = re.sub(
+                rf'(?<![`\w]){word}(?![`\w])',
+                f'`{word}`',
+                text,
+                flags=re.IGNORECASE,
+            )
+        return text
+
+    patched = quote_reserved(sql_content)
+
+    # Write to a temp file
+    import tempfile
+    tmp = tempfile.NamedTemporaryFile(
+        mode="w", suffix=".sql", delete=False, encoding="utf-8"
+    )
+    tmp.write(patched)
+    tmp.close()
+
     db_arg = f' "{database}"' if database else ""
     cmd = (
         f'"{mysql_bin}" -h {host} -P {port} -u {user}'
-        f' --password="{password}" --connect-timeout=10'
-        f'{db_arg} < "{sql_file}"'
+        f' --password="{password}" --connect-timeout=10 --force'
+        f'{db_arg} < "{tmp.name}"'
     )
-    return run(cmd, capture=True)
+    try:
+        return run(cmd, capture=True)
+    finally:
+        os.unlink(tmp.name)
 
 # ── step 1: ensure MySQL is installed ─────────────────────────────────────────
 

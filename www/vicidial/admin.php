@@ -1,4 +1,5 @@
 <?php
+ob_start(); // buffer output so header() calls work anywhere in the page
 # admin.php - VICIDIAL administration page
 #
 # Copyright (C) 2011  Matt Florell <vicidial@gmail.com>    LICENSE: AGPLv2
