@@ -10,6 +10,18 @@
  * the variable name used by both dbconnect.php files in this project.
  */
 
+// Suppress E_DEPRECATED and E_NOTICE for this legacy PHP 5 codebase.
+// strlen(null), ereg(), and hundreds of undefined-variable notices are
+// expected and harmless; hiding them keeps the page output clean.
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT);
+
+// ── null-safe strlen helper ───────────────────────────────────────────────────
+// Replaces the common PHP5 pattern  if (strlen($maybeNull) > 1)
+// which triggers E_DEPRECATED in PHP 8 when $maybeNull is null/undefined.
+if (!function_exists('strlenx')) {
+    function strlenx($s) { return strlen((string)($s ?? '')); }
+}
+
 // ── connection helpers ────────────────────────────────────────────────────────
 
 if (!function_exists('mysql_connect')) {

@@ -1048,7 +1048,7 @@ $SScustom_fields_enabled =	$row[3];
 	<TR WIDTH=160><TD <?php echo $users_hh ?> WIDTH=160>
 	<a href="<?php echo $ADMIN ?>?ADD=0"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $users_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $users_bold ?>Users</a>
 	</TD></TR>
-	<?php if (strlen($users_hh) > 1) { 
+	<?php if (strlenx($users_hh) > 1) { 
 		?>
 	<TR BGCOLOR=<?php echo $users_color ?>><TD ALIGN=LEFT>
 	 &nbsp; <a href="<?php echo $ADMIN ?>"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>>Show Users </a>
@@ -1079,7 +1079,7 @@ $SScustom_fields_enabled =	$row[3];
 	<a href="<?php echo $ADMIN ?>?ADD=10"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $campaigns_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $campaigns_bold ?>Campaigns</a>
 	</TD></TR>
 	<?php
-	if (strlen($campaigns_hh) > 1) 
+	if (strlenx($campaigns_hh) > 1) 
 		{ 
 		if ($sh=='basic') {$sh='list';}
 		if ($sh=='detail') {$sh='list';}
@@ -1135,7 +1135,7 @@ $SScustom_fields_enabled =	$row[3];
 		?>
 		<TR><TD ALIGN=LEFT <?php echo $lists_hh ?>><a href="<?php echo $ADMIN ?>?ADD=100"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $lists_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $lists_bold ?>Lists</a></TD></TR>
 		<?php
-		if (strlen($lists_hh) > 1) 
+		if (strlenx($lists_hh) > 1) 
 			{ 
 			if ($LOGdelete_from_dnc > 0) {$DNClink = 'Add-Delete DNC Number';}
 			else {$DNClink = 'Add DNC Number';}
@@ -1173,7 +1173,7 @@ $SScustom_fields_enabled =	$row[3];
 	<a href="<?php echo $ADMIN ?>?ADD=1000000"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $scripts_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $scripts_bold ?> Scripts </a>
 	</TD></TR>
 	<?php
-	if (strlen($scripts_hh) > 1) 
+	if (strlenx($scripts_hh) > 1) 
 		{ 
 		?>
 		<TR BGCOLOR=<?php echo $scripts_color ?>><TD ALIGN=LEFT> &nbsp; 
@@ -1190,7 +1190,7 @@ $SScustom_fields_enabled =	$row[3];
 		?>
 		<TR><TD ALIGN=LEFT <?php echo $filters_hh ?>><a href="<?php echo $ADMIN ?>?ADD=10000000"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $filters_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $filters_bold ?> Filters </a></TD></TR>
 		<?php
-		if (strlen($filters_hh) > 1) 
+		if (strlenx($filters_hh) > 1) 
 			{ 
 			?>
 		<TR BGCOLOR=<?php echo $filters_color ?>><TD ALIGN=LEFT> &nbsp; 
@@ -1206,7 +1206,7 @@ $SScustom_fields_enabled =	$row[3];
 	<a href="<?php echo $ADMIN ?>?ADD=1000"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $ingroups_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $ingroups_bold ?> Inbound </a>
 	</TD></TR>
 	<?php
-	if (strlen($ingroups_hh) > 1) 
+	if (strlenx($ingroups_hh) > 1) 
 		{
 		if ($LOGdelete_from_dnc > 0) {$FPGlink = 'Add-Delete FPG Number';}
 		else {$FPGlink = 'Add FPG Number';}
@@ -1243,7 +1243,7 @@ $SScustom_fields_enabled =	$row[3];
 	<a href="<?php echo $ADMIN ?>?ADD=100000"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $usergroups_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $usergroups_bold ?> User Groups </a>
 	</TD></TR>
 	<?php
-	if (strlen($usergroups_hh) > 1)
+	if (strlenx($usergroups_hh) > 1)
 		{ 
 		?>
 		<TR BGCOLOR=<?php echo $usergroups_color ?>><TD ALIGN=LEFT> &nbsp; 
@@ -1262,7 +1262,7 @@ $SScustom_fields_enabled =	$row[3];
 	<a href="<?php echo $ADMIN ?>?ADD=10000"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $remoteagent_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $remoteagent_bold ?> Remote Agents </a>
 	</TD></TR>
 	<?php
-	if (strlen($remoteagent_hh) > 1) 
+	if (strlenx($remoteagent_hh) > 1) 
 		{ 
 		?>
 		<TR BGCOLOR=<?php echo $remoteagent_color ?>><TD ALIGN=LEFT> &nbsp; 
@@ -1281,7 +1281,7 @@ $SScustom_fields_enabled =	$row[3];
 	<a href="<?php echo $ADMIN ?>?ADD=999998"><FONT FACE="ARIAL,HELVETICA" COLOR=<?php echo $admin_fc ?> SIZE=<?php echo $header_font_size ?>><?php echo $admin_bold ?> Admin </a>
 	</TD></TR>
 	<?php
-	if (strlen($admin_hh) > 1) 
+	if (strlenx($admin_hh) > 1) 
 		{ 
 		if ($sh=='times') {$times_sh="bgcolor=\"$times_color\""; $times_fc="$times_font";}
 			else {$times_sh=''; $times_fc='BLACK';}
@@ -1388,60 +1388,60 @@ $SScustom_fields_enabled =	$row[3];
 
 </TR>
 	<?php
-	if (strlen($list_sh) > 1) { 
+	if (strlenx($list_sh) > 1) { 
 		?>
 	<TR BGCOLOR=<?php echo $subcamp_color ?>><TD ALIGN=LEFT COLSPAN=2><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subcamp_font_size ?>> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=10"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subcamp_font_size ?>> Show Campaigns </a> &nbsp; &nbsp; | &nbsp; &nbsp; <a href="<?php echo $ADMIN ?>?ADD=11"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subcamp_font_size ?>> Add A New Campaign </a> &nbsp; &nbsp; | &nbsp; &nbsp; <a href="<?php echo $ADMIN ?>?ADD=12"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subcamp_font_size ?>> Copy Campaign </a> &nbsp; &nbsp; | &nbsp; &nbsp; <a href="./AST_timeonVDADallSUMMARY.php"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subcamp_font_size ?>> Real-Time Campaigns Summary </a></TD></TR>
 		<?php } 
 
-	if (strlen($times_sh) > 1) { 
+	if (strlenx($times_sh) > 1) { 
 		?>
 	<TR BGCOLOR=<?php echo $times_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=100000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Call Times </a> &nbsp;| <a href="<?php echo $ADMIN ?>?ADD=111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Call Time </a> &nbsp;| <a href="<?php echo $ADMIN ?>?ADD=1000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show State Call Times </a> &nbsp;| <a href="<?php echo $ADMIN ?>?ADD=1111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New State Call Time </a></TD></TR>
 		<?php } 
-	if (strlen($shifts_sh) > 1) { 
+	if (strlenx($shifts_sh) > 1) { 
 		?>
 	<TR BGCOLOR=<?php echo $shifts_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=130000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Shifts </a> &nbsp;| <a href="<?php echo $ADMIN ?>?ADD=131111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Shift </a></TD></TR>
 		<?php } 
-	if (strlen($phones_sh) > 1) { 
+	if (strlenx($phones_sh) > 1) { 
 		?>
 	<TR BGCOLOR=<?php echo $phones_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=10000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Phones </a>&nbsp;|&nbsp;<a href="<?php echo $ADMIN ?>?ADD=11111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Phone </a>&nbsp;|&nbsp;<a href="<?php echo $ADMIN ?>?ADD=12000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Phone Alias List </a>&nbsp;|&nbsp;<a href="<?php echo $ADMIN ?>?ADD=12111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Phone Alias </a>&nbsp;|&nbsp;<a href="<?php echo $ADMIN ?>?ADD=13000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Group Alias List </a>&nbsp;|&nbsp;<a href="<?php echo $ADMIN ?>?ADD=13111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Group Alias </a></TD></TR>
 		<?php }
-	if (strlen($conference_sh) > 1) { 
+	if (strlenx($conference_sh) > 1) { 
 		?>
 	<TR BGCOLOR=<?php echo $conference_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=1000000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Conferences </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=1111111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Conference </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=10000000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show VICIDIAL Conferences </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=11111111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New VICIDIAL Conference </a></TD></TR>
 		<?php }
-	if ( (strlen($server_sh) > 1) and (strlen($admin_hh) > 1) ) { 
+	if ( (strlenx($server_sh) > 1) and (strlenx($admin_hh) > 1) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $server_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=100000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Servers </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=111111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Server </a></TD></TR>
 	<?php }
-	if ( (strlen($templates_sh) > 1) and (strlen($admin_hh) > 1) ) { 
+	if ( (strlenx($templates_sh) > 1) and (strlenx($admin_hh) > 1) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $templates_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=130000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Templates </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=131111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Template </a></TD></TR>
 	<?php }
-	if ( (strlen($carriers_sh) > 1) and (strlen($admin_hh) > 1) ) { 
+	if ( (strlenx($carriers_sh) > 1) and (strlenx($admin_hh) > 1) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $carriers_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=140000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Carriers </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=141111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Carrier </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=140111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Copy A Carrier </a></TD></TR>
 	<?php }
-	if ( (strlen($tts_sh) > 1) and (strlen($admin_hh) > 1) ) { 
+	if ( (strlenx($tts_sh) > 1) and (strlenx($admin_hh) > 1) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $tts_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=150000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show TTS Entries </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=151111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New TTS Entry </a></TD></TR>
 	<?php }
-	if ( (strlen($cc_sh) > 1) and (strlen($admin_hh) > 1) ) { 
+	if ( (strlenx($cc_sh) > 1) and (strlenx($admin_hh) > 1) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $cc_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="callcard_admin.php"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> CallCard Summary </a> &nbsp; | &nbsp; <a href="callcard_admin.php?action=CALLCARD_RUNS"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Runs </a> &nbsp; | &nbsp; <a href="callcard_admin.php?action=CALLCARD_BATCHES"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Batches </a> &nbsp; | &nbsp; <a href="callcard_admin.php?action=SEARCH"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> CallCard Search </a> &nbsp; | &nbsp; <a href="callcard_report_export.php"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> CallCard Log Export </a> &nbsp; | &nbsp; <a href="callcard_admin.php?action=GENERATE"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> CallCard Generate New Numbers </a></TD></TR>
 	<?php }
-	if ( (strlen($moh_sh) > 1) and (strlen($admin_hh) > 1) ) { 
+	if ( (strlenx($moh_sh) > 1) and (strlenx($admin_hh) > 1) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $moh_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=160000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show MOH Entries </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=161111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New MOH Entry </a></TD></TR>
 	<?php }
-	if ( (strlen($vm_sh) > 1) and (strlen($admin_hh) > 1) ) { 
+	if ( (strlenx($vm_sh) > 1) and (strlenx($admin_hh) > 1) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $vm_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=170000000000"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Show Voicemail Entries </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=171111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Add A New Voicemail Entry </a></TD></TR>
 	<?php }
-	if (strlen($settings_sh) > 1) { 
+	if (strlenx($settings_sh) > 1) { 
 		?>
 	<TR BGCOLOR=<?php echo $settings_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=311111111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> System Settings </a></TD></TR>
 	<?php }
-	if ( (strlen($status_sh) > 1) and (!eregi('campaign',$hh) ) ) { 
+	if ( (strlenx($status_sh) > 1) and (!eregi('campaign',$hh) ) ) { 
 		?>
 	<TR BGCOLOR=<?php echo $status_color ?>><TD ALIGN=LEFT COLSPAN=2> &nbsp; <a href="<?php echo $ADMIN ?>?ADD=321111111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> System Statuses </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=331111111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> Status Categories </a> &nbsp; | &nbsp; <a href="<?php echo $ADMIN ?>?ADD=341111111111111"><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>> QC Status Codes </a></TD></TR>
 	<?php }
@@ -1452,7 +1452,7 @@ $SScustom_fields_enabled =	$row[3];
 	<?php }
 
 	
-if (strlen($reports_hh) > 1) { 
+if (strlenx($reports_hh) > 1) { 
 	?>
 <TR BGCOLOR=<?php echo $reports_color ?>><TD ALIGN=LEFT COLSPAN=2><FONT FACE="ARIAL,HELVETICA" COLOR=BLACK SIZE=<?php echo $subheader_font_size ?>><B> &nbsp; </B></TD></TR>
 <?php } ?>
